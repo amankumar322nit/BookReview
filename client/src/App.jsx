@@ -2,6 +2,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from "./layout.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import Login from "./pages/Login.jsx";
+import Books from "./pages/Books.jsx";
 
 function App() {
 
@@ -9,6 +10,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
     <Route path='/' element={<Layout />}>
+    <Route path="/" element={<Books/>}></Route>
     </Route>
     <Route path='/signup' element={<SignUp/>}>
     </Route>
