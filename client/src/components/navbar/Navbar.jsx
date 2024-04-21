@@ -4,13 +4,13 @@ import DarkMode from "./DarkMode";
 const Menu = [
   {
     id: 1,
-    name: "Home",
-    link: "/",
+    name: "Fav",
+    link: "/fav",
   },
   {
     id: 2,
-    name: "About",
-    link: "/#services",
+    name: "Logout",
+    link: "/login",
   },
 ];
 

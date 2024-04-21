@@ -1,9 +1,12 @@
-import React from 'react'
+
+import BookSec from '../components/books/BookSec'
 import Hero from '../components/books/Hero'
 
 const Books = () => {
   return (
-    <div><Hero/></div>
+    <div><Hero/>
+    <BookSec/>
+    </div>
   )
 }
 
