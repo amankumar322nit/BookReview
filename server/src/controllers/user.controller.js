@@ -23,6 +23,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password, username } = req.body;
+  console.log("Login");
 
   if (!(email || username)) {
     throw new ApiError(409, "please provide email and usename");
