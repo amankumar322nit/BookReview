@@ -11,7 +11,6 @@ const FavBooks = () => {
     },[])
     useEffect(() => {
         if (response) setBookdata(response.data.books);
-        console.log(response);
       }, [response]);
 
       if (loading) {

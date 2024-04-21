@@ -25,27 +25,27 @@ export const Product = () => {
         bookId: productId,
       },
       method: "put",
-    })
-    if(userData?.favourite.includes(productId)){
-      const favourite=userData?.favourite.filter((item)=>item!==productId)
-      setUserData({...userData,favourite:favourite})
-    }else if(userData?.favourite){
-      const favourite=userData.favourite;
-      favourite.push(productId)
-      setUserData({...userData,favourite:favourite})
+    });
+    if (userData?.favourite.includes(productId)) {
+      const favourite = userData?.favourite.filter(
+        (item) => item !== productId
+      );
+      setUserData({ ...userData, favourite: favourite });
+    } else if (userData?.favourite) {
+      const favourite = userData.favourite;
+      favourite.push(productId);
+      setUserData({ ...userData, favourite: favourite });
     }
   };
-  console.log(userData.favourite);
   useEffect(() => {
-    if (response?.message=='User Details') {
+    if (response?.message == "User Details") {
       setUserData(response.data.user);
     }
-    if(response?.message=='Successfully retrieved the book'){
+    if (response?.message == "Successfully retrieved the book") {
       setData(response.data.book);
     }
   }, [response]);
 
-  console.log("userData", userData);
   return (
     <main>
       <div className="main-wrapper md:px-[200px] md:py-[100px] relative">

@@ -18,7 +18,6 @@ const useAxios = () => {
   // Set up request and response interceptors
   axiosInstance.interceptors.request.use(
     (config) => {
-        console.log('config',config);
       const token = Cookies.get("accessToken");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -32,7 +31,6 @@ const useAxios = () => {
     (response) => {
       // Log or modify response here
       console.log("Received response from:", response.config.url);
-      console.log(response);
       if (response.data.message == "User logged In Successfully") {
         Cookies.set("accessToken", response.data.data.accessToken);
         navigate("/");
@@ -72,7 +70,6 @@ const useAxios = () => {
       if (axios.isCancel(error)) {
         console.log("Request cancelled", error.message);
       } else {
-        console.log(error);
         if (error.response.data.message == "Unauthorized request") {
           navigate("/login");
         }
