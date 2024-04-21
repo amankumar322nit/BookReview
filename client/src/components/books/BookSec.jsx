@@ -41,6 +41,14 @@ const BookSec = () => {
     return debounce(handleChange, 500);
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center h-1/2">
+        <div className="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin absolute"></div>
+      </div>
+    );
+  }
+
   return (
     <>
       {/* {open?<Modal handelClose={()=>setOpen(false)} data={modalData} openModal={true}/>:null} */}

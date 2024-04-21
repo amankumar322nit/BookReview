@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  getallfav,
   loginUser,
   logoutUser,
   refreshAccessToken,
@@ -19,5 +20,7 @@ router.route("/logout").get(verifyJWT, logoutUser);
 router.route("/refresh-token").post(refreshAccessToken);
 
 router.route("/").get(verifyJWT,userData);
+
+router.route('/fav').get(verifyJWT, getallfav)
 
 export default router;

@@ -22,7 +22,14 @@ const Login = () => {
     Cookies.remove('accessToken');
   },[]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center h-1/2">
+        <div className="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin absolute"></div>
+      </div>
+    );
+  }
+
   if (error) return <div>Error: {error.message}</div>;
   return (
     <div className="flex h-screen">

@@ -1,9 +1,10 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import Layout from "./layout.jsx";
-import { SignUp } from "./pages/SignUp.jsx";
-import Login from "./pages/Login.jsx";
-import Books from "./pages/Books.jsx";
-import { Product } from "./components/ProductDetails/Product.jsx";
+import Layout from "../layout.jsx";
+import Login from "./Login.jsx";
+import Books from "./Books.jsx";
+import { Product } from "../components/ProductDetails/Product.jsx";
+import FavBooks from "./FavBooks.jsx";
+import Signup from "./SignUp.jsx";
 
 function App() {
 
@@ -13,8 +14,9 @@ const router = createBrowserRouter(
     <Route path='/' element={<Layout />}>
     <Route path="/" element={<Books/>}></Route>
     <Route path='/:productId' element={<Product/>}></Route>
+    <Route path='/fav' element={<FavBooks/>}></Route>
     </Route>
-    <Route path='/signup' element={<SignUp/>}>
+    <Route path='/signup' element={<Signup/>}>
     </Route>
     <Route path='/login' element={<Login/>}>
     </Route>

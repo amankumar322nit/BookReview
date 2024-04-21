@@ -18,6 +18,7 @@ const useAxios = () => {
   // Set up request and response interceptors
   axiosInstance.interceptors.request.use(
     (config) => {
+        console.log('config',config);
       const token = Cookies.get("accessToken");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;

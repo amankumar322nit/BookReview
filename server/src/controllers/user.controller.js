@@ -3,6 +3,7 @@ import { ApiError } from "../utils/apiError.js";
 import { User } from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/apiResponse.js";
+import { Book } from "../models/book.model.js";
 
 const generateAccessAndRefereshTokens = async (userId) => {
   try {
@@ -97,9 +98,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { email, username, password } = req.body;
-  if (
-    [ email, username, password].some((field) => field?.trim() === "")
-  ) {
+  if ([email, username, password].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "All field are required");
   }
   const existedUser = await User.findOne({
@@ -118,7 +117,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (!user) {
     throw new ApiError(500, "Server Error");
   }
-  user.password="";
+  user.password = "";
 
   return res
     .status(201)
@@ -189,4 +188,25 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken, userData };
+const getallfav = asyncHandler(async (req, res) => {
+  const user=await User.findById(req.user._id);
+  const books = await Book.find({ _id: { $in: user.favourite } });
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        { books },
+        "books data"
+      )
+    );
+});
+export {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getallfav,
+  refreshAccessToken,
+  userData,
+};
