@@ -12,7 +12,7 @@ const useAxios = () => {
 
   // Create an Axios instance
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8000/" // Replace with your actual base URL
+    baseURL: "http://localhost:8000/", // Replace with your actual base URL
   });
 
   // Set up request and response interceptors
@@ -32,13 +32,12 @@ const useAxios = () => {
       // Log or modify response here
       console.log("Received response from:", response.config.url);
       console.log(response);
-      if(response.data.message=="User logged In Successfully")
-      {
+      if (response.data.message == "User logged In Successfully") {
         Cookies.set("accessToken", response.data.data.accessToken);
-        navigate('/');
+        navigate("/");
       }
-      if(response.data.message=="Created a new account"){
-        navigate('/login')
+      if (response.data.message == "Created a new account") {
+        navigate("/login");
       }
 
       return response;
@@ -57,14 +56,14 @@ const useAxios = () => {
     };
   }, []);
   // Making the API call with cancellation support
-  const fetchData = async ({ url, method, data = {},params }) => {
+  const fetchData = async ({ url, method, data = {}, params }) => {
     setLoading(true);
     try {
       const result = await axiosInstance({
         url,
         method,
-        data: method.toLowerCase() === "get" ? undefined : data, // Only include data for non-GET requests
-        params: method.toLowerCase() === "get" ? data : params, // For GET requests, use data as query params
+        data: data, // Only include data for non-GET requests
+        params: params, // For GET requests, use data as query params
         cancelToken: axios.CancelToken.source().token,
       });
       setResponse(result.data);
@@ -73,8 +72,8 @@ const useAxios = () => {
         console.log("Request cancelled", error.message);
       } else {
         console.log(error);
-        if(error.response.data.message=='Unauthorized request'){
-            navigate('/login');
+        if (error.response.data.message == "Unauthorized request") {
+          navigate("/login");
         }
         setError(error.response ? error.response.data : error.message);
       }
